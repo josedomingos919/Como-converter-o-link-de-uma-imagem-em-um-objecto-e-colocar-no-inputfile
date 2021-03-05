@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script></script>
+
+    <script>
+      let getFile = async () => {
+        let response = await fetch(
+          "http://localhost/aprpba/api/upload/2507200904030.jpeg"
+        );
+        let data = await response.blob();
+        let metadata = {
+          //type: 'image/jpeg'
+          type: "jpeg",
+        };
+
+        let file = new File([data], "teste.jpeg", metadata);
+        console.log(file);
+
+        let dt = new DataTransfer();
+        dt.items.add(file);
+        file1.files = dt.files;
+        //var reader = new FileReader();
+        //reader.onloadend = function(){
+        //    console.log(reader);
+        //   console.log("Fim",reader.result);
+        // }
+        //reader.readAsDataURL(data);
+      };
+
+      getFile();
+
+      /*
+        let file = (data)=>{
+            var reader = new FileReader();
+
+            reader.onloadend = function(){
+                console.log(reader);
+                console.log("Fim",reader.result);
+            }
+
+            reader.readAsDataURL(data);
+        }
+
+        fetch('http://localhost/aprpba/api/upload/2507200904030.jpeg')
+        .then(res=>res.blob())
+        .then(blob=>{
+
+            //file(blob);
+            //let objUrl = URL.createObjectURL(blob);
+            //let data = new DataTransfer();
+            //data.items.add(blob);
+            //file1.files = data.files;
+
+            //console.log(file1.files);
+            //let myImg = new Image();
+            //myImg.src = objUrl;
+            //document.body.appendChild(myImg);
+        })*/
+    </script>
+
+    <form method="POST" action="teste.php" enctype="multipart/form-data">
+      <input name="jose" type="file" accept="application/pdf" id="file1" />
+      <input name="hello" type="submit" value="Enviar" />
+    </form>
+  </body>
+</html>
